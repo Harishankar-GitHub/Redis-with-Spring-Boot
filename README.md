@@ -31,3 +31,9 @@ docker run --name redis -p 6379:6379 -d redis
 #### Jedis Dependency
 > Jedis Dependency is needed to connect the Spring Boot Application with Redis.
 - [Jedis Dependency Link](https://mvnrepository.com/artifact/redis.clients/jedis) 
+
+#### Caching
+
+- ***@Cacheable*** - Usually used in ***GET APIs*** to store the data in Cache.
+- ***@CacheEvict*** - Used when data is ***deleted*** in the Database and that needs to ***reflect in Cache***.
+- ***@CachePut*** - Used when data is ***updated*** in the Database and that needs to ***reflect in the Cache***.
