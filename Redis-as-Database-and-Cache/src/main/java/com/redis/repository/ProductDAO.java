@@ -34,6 +34,9 @@ public class ProductDAO
     
     public Product getProductById(int id)
     {
+        System.out.println("Retrieving data from Redis Database!");
+        // When the data is available in Cache, then this method won't be called.
+
         return (Product) redisTemplate
                 .opsForHash()
                 .get(HASH_KEY, id);
