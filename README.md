@@ -27,6 +27,8 @@ docker run --name redis -p 6379:6379 -d redis
 #### Application
 - ***Redis as Database and Cache Application***
 	- Refer Application for the code.
+- ***Redis as Message Broker***
+	- Refer Application for the code.
 
 #### Jedis Dependency
 > Jedis Dependency is needed to connect the Spring Boot Application with Redis.
