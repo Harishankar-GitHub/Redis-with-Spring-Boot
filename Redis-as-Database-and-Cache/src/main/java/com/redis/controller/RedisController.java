@@ -40,7 +40,7 @@ public class RedisController
     @Cacheable(key = "#id", value = "Product", unless = "#result.price > 1000")
     // The key is from @PathVariable.
     // The value here is defined in Product Entity class.
-    // Cache data if the price is greater than 1000.
+    // Cache data if the price is not greater than 1000.
     public Product getProductById(@PathVariable int id)
     {
         return productDAO.getProductById(id);
