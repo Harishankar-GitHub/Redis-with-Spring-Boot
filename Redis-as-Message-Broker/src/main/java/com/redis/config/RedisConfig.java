@@ -12,13 +12,11 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 
 @Configuration
-public class RedisConfig
-{
+public class RedisConfig {
     private static final String CHANNEL_TOPIC = "rhsb_channelTopic";
 
     @Bean   // To establish connection to Redis.
-    public JedisConnectionFactory jedisConnectionFactory()
-    {
+    public JedisConnectionFactory jedisConnectionFactory() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName("localhost");
         configuration.setPort(6379);
@@ -27,8 +25,7 @@ public class RedisConfig
     }
 
     @Bean // To access Redis from the Application.
-    public RedisTemplate<String, Object> redisTemplate()
-    {
+    public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate redisTemplate = new RedisTemplate();
 
         redisTemplate.setConnectionFactory(jedisConnectionFactory());
@@ -38,14 +35,12 @@ public class RedisConfig
     }
 
     @Bean // Need a Channel between Publisher and Subscriber to communicate.
-    public ChannelTopic topic()
-    {
+    public ChannelTopic topic() {
         return new ChannelTopic(CHANNEL_TOPIC);
     }
 
     @Bean // Need a Container who can manage Listener and ChannelTopic.
-    public RedisMessageListenerContainer redisMessageListenerContainer()
-    {
+    public RedisMessageListenerContainer redisMessageListenerContainer() {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(jedisConnectionFactory());
         container.addMessageListener(messageListenerAdapter(), topic());
@@ -53,8 +48,7 @@ public class RedisConfig
     }
 
     @Bean // To listen to the message.
-    public MessageListenerAdapter messageListenerAdapter()
-    {
+    public MessageListenerAdapter messageListenerAdapter() {
         return new MessageListenerAdapter(new Subscriber());
     }
 }

@@ -5,8 +5,8 @@ import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 
 @Slf4j
-public class Subscriber implements MessageListener
-{
+public class Subscriber implements MessageListener {
+
     @Override
     public void onMessage(Message message, byte[] bytes)
     {
