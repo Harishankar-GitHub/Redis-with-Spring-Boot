@@ -19,20 +19,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
-public class RedisController
-{
+public class RedisController {
+
     @Autowired
     private ProductDAO productDAO;
 
     @PostMapping
-    public Product save(@RequestBody Product product)
-    {
+    public Product save(@RequestBody Product product) {
         return productDAO.save(product);
     }
 
     @GetMapping
-    public List<Product> getAllProducts()
-    {
+    public List<Product> getAllProducts() {
         return productDAO.getAllProducts();
     }
 
@@ -41,24 +39,21 @@ public class RedisController
     // The key is from @PathVariable.
     // The value here is defined in Product Entity class.
     // Cache data if the price is not greater than 1000.
-    public Product getProductById(@PathVariable int id)
-    {
+    public Product getProductById(@PathVariable int id) {
         return productDAO.getProductById(id);
     }
 
     @PutMapping
     @CachePut(key = "#product.id", value = "Product")
     // WHen data is updated, it is updated in cache as well.
-    public Product update(@RequestBody Product product)
-    {
+    public Product update(@RequestBody Product product) {
         return productDAO.update(product);
     }
 
     @DeleteMapping("/{id}")
     @CacheEvict(key = "#id", value = "Product")
     // When data is deleted, it is deleted from cache as well.
-    public String deleteProduct(@PathVariable int id)
-    {
+    public String deleteProduct(@PathVariable int id) {
         return productDAO.deleteProduct(id);
     }
 }

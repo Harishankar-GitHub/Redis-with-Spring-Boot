@@ -11,11 +11,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @EnableRedisRepositories    // Enabling Redis Repositories.
-public class RedisConfig
-{
+public class RedisConfig {
+
     @Bean   // To establish connection to Redis.
-    public JedisConnectionFactory jedisConnectionFactory()
-    {
+    public JedisConnectionFactory jedisConnectionFactory() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName("localhost");
         configuration.setPort(6379);
@@ -24,8 +23,7 @@ public class RedisConfig
     }
 
     @Bean // To access Redis from the Application.
-    public RedisTemplate<String, Object> redisTemplate()
-    {
+    public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate redisTemplate = new RedisTemplate();
 
         redisTemplate.setConnectionFactory(jedisConnectionFactory());

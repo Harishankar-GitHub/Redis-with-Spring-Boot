@@ -12,8 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @RedisHash("Product")   // We need to store the Product in Redis.
-public class Product implements Serializable
-{
+public class Product implements Serializable {
     @Id
     private int id;
     private String name;
