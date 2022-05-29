@@ -2,6 +2,7 @@ package com.redis.repository;
 
 import com.redis.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -52,5 +53,25 @@ public class ProductDAO {
                 .put(HASH_KEY, product.getId(), product);
 
         return product;
+    }
+
+    public void clearAllKeysFromRedis() {
+//        redisTemplate
+//                .execute(new RedisCallback() {
+//                    @Override
+//                    public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+//                        redisConnection.flushDb();
+//                        return null;
+//                    }
+//                });
+
+
+        // The above code can also be written as below.
+
+        redisTemplate
+                .execute((RedisCallback) redisConnection -> {
+                    redisConnection.flushDb();
+                    return null;
+                });
     }
 }

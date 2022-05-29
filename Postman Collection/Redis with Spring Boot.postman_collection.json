@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "7366e58e-8e36-42c9-9976-a29684410a80",
 		"name": "Redis with Spring Boot",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15864431"
 	},
 	"item": [
 		{
@@ -118,6 +119,26 @@
 							"port": "8080",
 							"path": [
 								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear All Keys From Redis",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/clearAllKeysFromRedis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"clearAllKeysFromRedis"
 							]
 						}
 					},

@@ -56,4 +56,10 @@ public class RedisController {
     public String deleteProduct(@PathVariable int id) {
         return productDAO.deleteProduct(id);
     }
+
+    @DeleteMapping("/clearAllKeysFromRedis")
+    public void clearAllKeysFromRedis() {
+        productDAO.clearAllKeysFromRedis();
+        System.out.println("Deleted all keys from Redis!");
+    }
 }
