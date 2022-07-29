@@ -36,8 +36,9 @@ public class RedisController {
 
     @GetMapping("/{id}")
     @Cacheable(key = "#id", value = "Product", unless = "#result.price > 1000")
-    // The key is from @PathVariable.
-    // The value here is defined in Product Entity class.
+    // The key is from @PathVariable which is nothing but an argument of the method.
+    // The value is a unique identifier. The key will look like value:key.
+    // The response of the method is cached.
     // Cache data if the price is not greater than 1000.
     public Product getProductById(@PathVariable int id) {
         return productDAO.getProductById(id);
@@ -45,7 +46,7 @@ public class RedisController {
 
     @PutMapping
     @CachePut(key = "#product.id", value = "Product")
-    // WHen data is updated, it is updated in cache as well.
+    // When data is updated, it is updated in cache as well.
     public Product update(@RequestBody Product product) {
         return productDAO.update(product);
     }
